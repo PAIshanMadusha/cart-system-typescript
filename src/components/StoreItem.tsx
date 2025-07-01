@@ -25,7 +25,7 @@ export function StoreItem({
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
   return (
-    <Card className="h-100 shadow-lg">
+    <Card className="h-100 shadow-sm border-0">
       <Card.Img
         variant="top"
         src={imageUrl}
