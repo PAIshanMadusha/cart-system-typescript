@@ -17,10 +17,15 @@ export function StoreItem({
   price,
   imageUrl,
 }: StoreItemProps) {
-  const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart();
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
   const quantity = getItemQuantity(id);
   return (
-    <Card className="h-100">
+    <Card className="h-100 shadow-lg">
       <Card.Img
         variant="top"
         src={imageUrl}
@@ -30,7 +35,15 @@ export function StoreItem({
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-3">
           <span className="fs-5">{name}</span>
-          <span className="ms-2 text-muted">{formatCurrency(price)}</span>
+          <span
+            className="ms-2 text-primary"
+            style={{
+              fontWeight: "bold",
+              fontSize: "1.1rem",
+            }}
+          >
+            {formatCurrency(price)}
+          </span>
         </Card.Title>
         <Card.Subtitle
           className="mb-3 text-secondary"
@@ -40,7 +53,18 @@ export function StoreItem({
         </Card.Subtitle>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={()=> increaseCartQuantity(id)}>+ Add to Cart</Button>
+            <Button
+              className="w-100 shadow"
+              variant="success"
+              style={{
+                fontWeight: "bold",
+                letterSpacing: "1px",
+                fontSize: "0.8rem",
+              }}
+              onClick={() => increaseCartQuantity(id)}
+            >
+              + Add to Cart
+            </Button>
           ) : (
             <div
               className="d-flex align-items-center flex-column"
@@ -50,13 +74,53 @@ export function StoreItem({
                 className="d-flex align-items-center jsutify-content-center"
                 style={{ gap: "0.5rem" }}
               >
-                <Button onClick={()=> decreaseCartQuantity(id)} >-</Button>
+                <Button
+                  className="shadow"
+                  variant="danger"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => decreaseCartQuantity(id)}
+                >
+                  -
+                </Button>
                 <div>
-                  <span className="fs-3">{quantity}</span> in Cart
+                  <span
+                    className="fs-3"
+                    style={{
+                      fontWeight: "normal",
+                      fontSize: "0.5rem",
+                    }}
+                  >
+                    {quantity}
+                  </span>{" "}
+                  in Cart
                 </div>
-                <Button onClick={()=> increaseCartQuantity(id)}>+</Button>
+                <Button
+                  className="shadow"
+                  variant="success"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => increaseCartQuantity(id)}
+                >
+                  +
+                </Button>
               </div>
-              <Button onClick={()=> removeFromCart(id)} variant="danger" size="sm">Remove</Button>
+              <Button
+                className="w-100 shadow"
+                variant="danger"
+                style={{
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                  fontSize: "0.8rem",
+                }}
+                onClick={() => removeFromCart(id)}
+              >
+                - Remove From Cart
+              </Button>
             </div>
           )}
         </div>
