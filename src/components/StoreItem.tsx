@@ -16,6 +16,7 @@ export function StoreItem({
   price,
   imageUrl,
 }: StoreItemProps) {
+  
   const quantity = 0;
   return (
     <Card className="h-100">
