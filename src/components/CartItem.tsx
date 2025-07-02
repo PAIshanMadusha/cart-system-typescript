@@ -14,29 +14,34 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (item == null) return null;
 
   return (
-    <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
+    <Stack
+      direction="horizontal"
+      gap={3}
+      className="d-flex align-items-center p-2 border rounded shadow-lg bg-light"
+    >
       <img
         src={item.imageUrl}
-        style={{ width: "125px", height: "75px", objectFit: "cover" }}
+        alt={item.name}
+        className="rounded"
+        style={{ width: "100px", height: "75px", objectFit: "cover" }}
       />
       <div className="me-auto">
-        <div>
+        <div className="fw-semibold">
           {item.name}{" "}
           {quantity > 1 && (
-            <span className="text-muted" style={{ fontSize: ".9rem" }}>
-              X{quantity}
-            </span>
+            <span className="text-primary normal">x{quantity}</span>
           )}
         </div>
-        <div className="text-muted" style={{ fontSize: ".75rem" }}>
-          {formatCurrency(item.price)}
-        </div>
+        <div className="text-muted small">{formatCurrency(item.price)}</div>
       </div>
-      <div>{formatCurrency(item.price * quantity)}</div>
+      <div className="fw-semibold text-success">
+        {formatCurrency(item.price * quantity)}
+      </div>
       <Button
-        variant="outline-danger"
+        variant="danger"
         size="sm"
         onClick={() => removeFromCart(item.id)}
+        className="ms-2 fw-semibold"
       >
         &times;
       </Button>
